@@ -1,0 +1,264 @@
+//Задача 200.1
+
+"use strict";
+
+let elem1 = document.querySelector('#elem1');
+let elem2 = document.querySelector('#elem2');
+let elem3 = document.querySelector('#elem3');
+
+function func() {
+	console.log(this.value);
+}
+
+func.call(elem1);
+func.call(elem2);
+func.call(elem3);
+
+//Задача 200.2
+
+<input id="elem" value="привет">
+
+"use strict";
+
+let elem = document.querySelector('#elem');
+
+function func(surname, name) {
+	console.log(this.value + ', ' + surname + ' ' + name);
+}
+
+func.call(elem, 'Иванов', 'Иван');
+
+//Задача 201.1
+
+<input id="elem" value="привет">
+
+"use strict";
+
+let elem = document.querySelector('#elem');
+
+function func(surname, name) {
+	console.log(this.value + ', ' + surname + ' ' + name);
+}
+
+let arr = ['Иванов', 'Иван'];
+
+func.apply(elem, arr);
+
+//Задача 202.1
+
+"use strict";
+
+let elem = document.getElementById('elem');
+
+function func(surname, name) {
+	console.log(this.value + ', ' + surname + ' ' + name);
+}
+
+func = func.bind(elem);
+
+func('Иванов', 'Иван'); 
+func('Петров', 'Петр');
+
+//Задача 203.1
+
+"use strict";
+
+setInterval(function () {
+    console.log('Привет')
+}, 3000);
+
+//Задача 204.1
+
+"use strict";
+
+let i = 100;
+setInterval(() => console.log(--i), 1000);
+
+//Задача 205.1
+
+"use strict";
+
+let i = 10;
+let timerId = setInterval(function () {
+    console.log(i--);
+    if ( i < 0) {
+        clearInterval(timerId);
+    }
+}, 1000);
+
+//Задача 206.1
+
+"use strict";
+
+let start = document.querySelector('#start');
+
+start.addEventListener('click', function () {
+    let i = 100;
+    setInterval(function() {
+        console.log(i--);
+    }, 1000)
+})
+
+//Задача 206.2
+
+"use strict";
+
+let start = document.querySelector('#start');
+
+start.addEventListener('click', function func() {
+    let i = 100;
+    setInterval(function() {
+        console.log(i--);
+    }, 1000)
+    this.removeEventListener('click', func);
+})
+
+//Задача 207.1
+
+"use strict";
+
+let start = document.querySelector('#start');
+let stop  = document.querySelector('#stop');
+let timerId;
+
+start.addEventListener('click', function func() {
+    let i = 100;
+    timerId = setInterval(function() {
+        console.log(i--);
+        if (i == 0) {
+            clearInterval(timerId);
+        }
+    }, 1000)
+    
+    this.removeEventListener('click', func);
+})
+stop.addEventListener('click', function() {
+    clearInterval(timerId);
+});
+
+//Задача 207.2
+
+"use strict";
+
+let start = document.querySelector('#start');
+let stop  = document.querySelector('#stop');
+let timerId;
+start.addEventListener('click', function() {
+	timerId = setInterval(function() {
+		let date = new Date;
+		console.log(date.getMinutes() + ' ' + date.getSeconds());
+	}, 1000);
+});
+
+stop.addEventListener('click', function() {
+	clearInterval(timerId);
+});
+
+//Задача 207.3
+
+"use strict";
+
+let start = document.querySelector('#start');
+let stop  = document.querySelector('#stop');
+
+let timerId;
+
+start.addEventListener('click', function() {
+	timerId = setInterval(function() {
+		let date = new Date;
+		console.log(date.getMinutes() + ' ' + date.getSeconds());
+	}, 1000);
+});
+
+stop.addEventListener('click', function() {
+	clearInterval(timerId);
+});
+
+//Задача 207.4
+
+"use strict";
+
+let start = document.querySelector('#start');
+let stop  = document.querySelector('#stop');
+
+let timerId;
+
+start.addEventListener('click', function() {
+	timerId = setInterval(function() {
+		let date = new Date;
+		console.log(date.getMinutes() + ' ' + date.getSeconds());
+	}, 1000);
+});
+
+stop.addEventListener('click', function() {
+	clearInterval(timerId);
+});
+
+//Задача 207.5
+
+let start = document.querySelector('start');
+let stop  = document.querySelector('stop');
+
+let timerId;
+
+start.addEventListener('click', function() {
+	timerId = setInterval(function() {
+		let date = new Date;
+		console.log(date.getMinutes() + ' ' + date.getSeconds());
+	}, 1000);
+});
+
+stop.addEventListener('click', function() {
+	clearInterval(timerId);
+});
+
+//Задача 207.6
+
+"use strict";
+
+let start = document.querySelector('#start');
+let stop  = document.querySelector('#stop');
+let timerId;
+
+start.addEventListener('click', func);
+
+stop.addEventListener('click', function() {
+	clearInterval(timerId);
+    start.addEventListener('click', func);
+});
+
+function func() {
+    timerId = setInterval(function() {
+		let date = new Date;
+		console.log(date.getMinutes() + ' ' + date.getSeconds());
+	}, 1000);
+    this.removeEventListener('click', func);
+}
+
+//Задача 208.1
+
+//Функция Number приводит тип данных из инпута к числу. Если её не написать то 
+//сложение будет происходить как строка + строка
+
+//Задача 208.2
+
+"use strict";
+
+let elem = document.querySelector('#elem');
+
+setInterval(function() {
+	elem.value = Number(elem.value) - 1;
+}, 1000);
+
+//Задача 208.3
+
+"use strict";
+
+let elem = document.querySelector('#elem');
+
+let timerId = setInterval(function() {
+	elem.value = Number(elem.value) - 1;
+    if (elem.value == 0) {
+        clearInterval(timerId);
+    }
+}, 1000);
