@@ -1,0 +1,25 @@
+.redBorder {
+    border: 1px solid red;
+}
+
+.greenBorder {
+    border: 1px solid blue;
+}
+
+.buttonRed {
+    background-color: red;
+}
+
+.buttonGreen {
+    background-color: green;
+}
+
+ul {
+	padding: 30px;
+	border: 1px solid red;
+}
+li {
+	list-style-type: none;
+	margin-bottom: 20px;
+	border: 1px dashed black;
+}

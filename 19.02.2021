@@ -1,0 +1,201 @@
+//Задача 190.1
+
+<p id="text">0 : 0</p>
+
+'use strict'
+let text = document.querySelector('#text');
+
+document.addEventListener('mousemove', function () {
+    text.innerHTML = event.clientX + ' : ' + event.clientY;
+})
+
+//Задача 191.1
+
+<button id="elem">text</button>
+
+'use strict'
+let elem = document.querySelector('#elem');
+
+elem.addEventListener('click', func);
+elem.addEventListener('dblclick', func);
+
+function func() {
+    if (event.type == 'dblclick') {
+        elem.classList.remove('buttonGreen');
+        elem.classList.add('buttonRed');
+    } else {
+        elem.classList.remove('buttonRed')
+        elem.classList.add('buttonGreen');
+    }
+	
+}
+
+//Задача 192.1
+
+<ul id="elem">
+    <li>text</li>
+    <li>text</li>
+    <li>text</li>
+    <li>text</li>
+    <li>text</li>
+</ul>
+
+'use strict'
+let elem = document.querySelector('#elem');
+
+elem.addEventListener('click', function(event) {
+    if (event.target.tagName == 'LI') {
+        event.target.innerHTML = event.target.innerHTML + '!';
+    } else if (event.target.tagName == 'UL') {
+        event.target.innerHTML = event.target.innerHTML + '<li>text</li>';
+    }
+});
+
+//Задача 193.1
+
+<input type="text" id="inputText">
+<p id="text"></p>
+
+'use strict'
+let inputText = document.querySelector('#inputText');
+let text = document.querySelector('#text');
+
+inputText.addEventListener('keydown', function () {
+    if (event.code == 'Enter') {
+        text.innerHTML = text.innerHTML + inputText.value + '</br>'
+        inputText.value = null;
+    }
+})
+
+//Задача 194.1
+
+<input type="button" value="PUSH" id="elem">
+
+'use strict'
+let elem = document.querySelector('#elem');
+
+elem.addEventListener('click', function () {
+    if (event.altKey) {
+        elem.classList.add('buttonRed');
+    }
+})
+
+//Задача 194.2
+
+<ul id="elem">
+    <li>text</li>
+    <li>text</li>
+    <li>text</li>
+    <li>text</li>
+    <li>text</li>
+</ul>
+
+'use strict'
+let elem = document.querySelector('#elem');
+
+elem.addEventListener('click', function () {
+    if (event.target.tagName == 'LI' && event.ctrlKey) {
+        event.target.innerHTML = event.target.innerHTML + 1;
+    } else if (event.target.tagName == 'LI' && event.shiftKey) {
+        event.target.innerHTML = event.target.innerHTML + 2;
+    }
+})
+
+//Задача 195.1
+
+<a href="http://ya.ru">Сылка</a><br>
+<a href="http://ya.ru">Сылка</a><br>
+<a href="http://ya.ru">Сылка</a><br>
+<a href="http://ya.ru">Сылка</a><br>
+
+'use strict'
+let links = document.querySelectorAll('a');
+
+for (let link of links) {
+    link.addEventListener('click', function () {
+        event.preventDefault();
+        link.innerHTML = link.innerHTML + ' ' + link.href;
+    })
+}
+
+//Задача 195.2
+
+<input type="text" id="elem1">
+<input type="text" id="elem2">
+<p id="sum">0</p>
+<a href="/" id="linkBtn">ССылка</a>
+
+'use strict'
+let elem1 = document.querySelector("#elem1");
+let elem2 = document.querySelector("#elem2");
+let sum = document.querySelector('#sum');
+let linkBtn = document.querySelector('#linkBtn');
+
+linkBtn.addEventListener('click', function () {
+    event.preventDefault();
+    sum.innerHTML = Number(elem1.value) + Number(elem2.value);
+})
+
+//Задача 198.1
+
+"use strict";
+
+let elem = document.querySelector('#elem');
+elem.addEventListener('blur', parent);
+
+function parent() {
+	console.log(this.value); // value инпута
+	
+	function child() {
+		console.log(this.value); // undefined
+	}
+	child();
+}
+
+//Задача 199.1
+
+"use strict";
+
+let elem = document.querySelector('#elem');
+elem.addEventListener('blur', func);
+
+function func() {
+    let self = this;
+	alert( square() );
+	function square() {
+		return self.value * self.value;
+	}
+}
+
+// this теряте контекс во вложенной функции и что бы передать значение this
+// из внешней функции нужно использовать переменную которой и присвоить значение
+// this.
+
+//Задача 199.2
+
+"use strict";
+
+let elem = document.querySelector('#elem');
+elem.addEventListener('blur', func);
+
+function func() {
+	alert( square(this) );
+	
+	function square(param) {
+		return param.value * param.value;
+	}
+}
+
+//Задача 199.3
+
+"use strict";
+
+let elem = document.querySelector('#elem');
+elem.addEventListener('blur', func);
+
+function func() {
+    let square = () =>{
+        return this.value * this.value;
+    }
+    alert(square());
+}
