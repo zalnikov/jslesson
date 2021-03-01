@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<input id="elem" value="10">
+<input type="button" id="elem" value="10">
 
 </body>
 
@@ -18,12 +18,11 @@
 
 let elem = document.querySelector('#elem');
 
-let timerId = setInterval(function() {
-	elem.value = Number(elem.value) - 1;
-    if (elem.value == 0) {
-        clearInterval(timerId);
-    }
-}, 1000);
+elem.addEventListener('click', function() {
+	setInterval(function(self) {
+		self.value--;
+	}, 1000, this);
+});
 
 </script>
 </html>

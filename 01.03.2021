@@ -1,0 +1,46 @@
+//Задача 209.1
+
+"use strict";
+
+let elem = document.querySelector('#elem');
+
+elem.addEventListener('click', function() {
+    let self = this;
+	setInterval(function() {
+		self.value = Number(elem.value) + 1;
+	}, 1000);
+});
+
+//Задача 209.2
+
+"use strict";
+
+let elem = document.querySelector('#elem');
+
+elem.addEventListener('click', function() {
+	setInterval( () => this.value = Number(elem.value) + 1, 1000);
+});
+
+//Задача 209.3
+
+let elem = document.querySelector('#elem'); //Поиск по DOM и передача элемента с айди elem в переменную. 
+
+elem.addEventListener('click', function() { //Привязка к событию click и вызов анонимной функции
+	setInterval((function(self) {           //Выполнение таймера с передачей анонимной функции нужного нам параметра
+		return function() {                 //Функция возвращает анонимную функцию с выводом переданного параметра в консоль
+			console.log(self.value);
+		}
+	})(this), 1000);                        //Вызов функции с параметром this (то что называется на месте) и определение задержки таймера.
+});
+
+//Задача 210.1
+
+"use strict";
+
+let elem = document.querySelector('#elem');
+
+elem.addEventListener('click', function() {
+	setInterval(function(self) {
+		self.value--;
+	}, 1000, this);
+});
