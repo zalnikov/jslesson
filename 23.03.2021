@@ -1,2 +1,109 @@
 //Задача 211.1
 
+"use strict";
+
+let elem = document.querySelector('#elem');
+let counter = document.querySelector('#counter');
+
+elem.addEventListener('click', function() {
+	setInterval(function() {
+        counter.innerHTML = Number(counter.innerHTML) + 1;
+    }, 1000)
+});
+
+//Задача 211.2
+
+"use strict";
+
+let elem = document.querySelector('#elem');
+let counter = document.querySelector('#counter');
+
+elem.addEventListener('click', function() {
+	let timerId = setInterval(function() {
+        counter.innerHTML = Number(counter.innerHTML) - 1;
+        if (Number(counter.innerHTML) == 0) {
+            clearInterval(timerId);
+        }
+    }, 1000)
+});
+
+//Задача 211.3
+
+"use strict";
+
+let elem = document.querySelector('#elem');
+
+document.addEventListener('DOMContentLoaded', function() {
+	setInterval(function() {
+        elem.value = Number(elem.value) ** 2;
+    }, 1000)
+});
+
+//Задача 211.4
+
+"use strict";
+
+let elem = document.querySelector('#elem');
+let counter = document.querySelector('#counter');
+
+elem.addEventListener('blur', function() {
+    counter.innerHTML = elem.value;
+    let timerId = setInterval(function () {
+        counter.innerHTML = counter.innerHTML - 1;
+        if (counter.innerHTML == 0) {
+            clearInterval(timerId);
+        }
+    }, 1000);
+})
+
+//Задача 211.5
+
+"use strict";
+
+let elem = document.querySelector('#elem');
+let counter = document.querySelector('#counter');
+let button = document.querySelector('#button');
+
+button.addEventListener('click', function() {
+    counter.innerHTML = elem.value;
+    let timerId = setInterval(function () {
+        counter.innerHTML = counter.innerHTML - 1;
+        if (counter.innerHTML == 0) {
+            clearInterval(timerId);
+        }
+    }, 1000);
+})
+
+//Задача 211.6
+
+"use strict";
+
+let counter = document.querySelector('#counter');
+let startBtn = document.querySelector('#startBtn');
+let finishBtn = document.querySelector('#finishBtn');
+let timerId;
+
+startBtn.addEventListener('click', function() {
+    timerId = setInterval(function () {
+        counter.innerHTML = Number(counter.innerHTML) + 1;
+    }, 1000);
+})
+
+finishBtn.addEventListener('click', function() {
+    clearInterval(timerId);
+})
+
+//Задача 211.7
+
+"use strict";
+
+let text = document.querySelector('#text');
+
+document.addEventListener('DOMContentLoaded', function() {
+    setInterval(function() {
+        text.classList.toggle('bgGreen');
+    },1000);
+});
+
+//Задача 211.8
+
