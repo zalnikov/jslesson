@@ -167,3 +167,78 @@ for (let elem of arr) {
     })
     parent.appendChild(li);
 }
+
+//Задача 219.1
+
+"use strict";
+
+let table = document.querySelector('#table');
+
+for (let i = 1; i <= 5; i++) {
+    let tr = document.createElement('tr');
+
+    for (let i = 1; i <= 5; i++) {
+        let td = document.createElement('td');
+        tr.appendChild(td);
+    };
+    table.appendChild(tr);
+};
+
+//Задача 219.2
+
+"use strict";
+
+let table = document.querySelector('#table');
+
+for (let i = 1; i <= 10; i++) {
+    let tr = document.createElement('tr');
+
+    for (let i = 1; i <= 5; i++) {
+        let td = document.createElement('td');
+        tr.appendChild(td);
+    };
+    table.appendChild(tr);
+};
+
+//Задача 219.3
+
+"use strict";
+
+let table = document.querySelector('#table');
+
+for (let i = 1; i <= 10; i++) {
+    let tr = document.createElement('tr');
+
+    for (let i = 1; i <= 5; i++) {
+        let td = document.createElement('td');
+        td.innerHTML = 'x';
+        tr.appendChild(td);
+    };
+    table.appendChild(tr);
+};
+
+//Задача 219.4
+
+"use strict";
+
+let line = document.querySelector('#line');
+let column = document.querySelector('#column');
+let button = document.querySelector('#button');
+let table = document.querySelector('#table');
+
+button.addEventListener('click', function() {
+    createTable(line.value, column.value);
+});
+
+function createTable (x, y) {
+    for (let i = 1; i <= x; i++) {
+    let tr = document.createElement('tr');
+
+        for (let i = 1; i <= y; i++) {
+            let td = document.createElement('td');
+            td.innerHTML = 'x';
+            tr.appendChild(td);
+        };
+        table.appendChild(tr);
+    };
+}
