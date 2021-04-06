@@ -9,19 +9,13 @@
 </head>
 <body>
 
-<p id="clock"></p>
+<ul id="elem">1</ul>
 
 </body>
 
 <script>
 "use strict";
 
-let clock = document.querySelector('#clock');
-
-setInterval(function() {
-    let date = new Date();
-    clock.innerHTML = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
-}, 1000);
 
 </script>
 </html>
