@@ -9,13 +9,25 @@
 </head>
 <body>
 
-<ul id="elem">1</ul>
+<ul id="parent"></ul>
 
 </body>
 
 <script>
 "use strict";
 
+let parent = document.querySelector('#parent');
+let arr = [1, 2, 3, 4, 5];
+
+for (let elem of arr) {
+    let li = document.createElement('li');
+    li.innerHTML = elem;
+    li.addEventListener('click', function func() {
+        li.innerHTML = li.innerHTML + '!';
+        this.removeEventListener('click', func);
+    })
+    parent.appendChild(li);
+}
 
 </script>
 </html>

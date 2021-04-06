@@ -61,3 +61,109 @@ button.addEventListener('click', function() {
     })
     elem.appendChild(createLi);
 })
+
+//Задача 215.1
+
+"use strict";
+
+let parent = document.querySelector('#parent');
+
+for (let i = 1; i <= 10; i++) {
+    let li = document.createElement('li');
+    li.innerHTML = i;
+    parent.appendChild(li);
+}
+
+
+//Задача 216.1
+
+"use strict";
+
+let parent = document.querySelector('#parent');
+let text = document.querySelector('#text');
+
+for (let i = 1; i <= 5; i++) {
+    let input = document.createElement('input');
+    input.addEventListener('blur', function () {
+        text.innerHTML = input.value;
+    })
+    parent.appendChild(input);
+}
+
+//Задача 217.1
+
+"use strict";
+
+let parent = document.querySelector('#parent');
+let arr = [1, 2, 3, 4, 5];
+
+for (let elem of arr) {
+    let p = document.createElement('p');
+    p.innerHTML = elem;
+    p.addEventListener('click', function () {
+        p.innerHTML = Number(p.innerHTML) + 1;
+    })
+    parent.appendChild(p);
+}
+
+//Задача 218.1
+
+"use strict";
+
+let parent = document.querySelector('#parent');
+let arr = [1, 2, 3, 4, 5];
+
+for (let elem of arr) {
+    let li = document.createElement('li');
+    li.innerHTML = elem;
+    parent.appendChild(li);
+}
+
+//Задача 218.2
+
+"use strict";
+
+let parent = document.querySelector('#parent');
+let arr = [1, 2, 3, 4, 5];
+
+for (let elem of arr) {
+    let li = document.createElement('li');
+    li.innerHTML = elem;
+    li.addEventListener('click', function () {
+        alert(li.innerHTML);
+    })
+    parent.appendChild(li);
+}
+
+//Задача 218.3
+
+"use strict";
+
+let parent = document.querySelector('#parent');
+let arr = [1, 2, 3, 4, 5];
+
+for (let elem of arr) {
+    let li = document.createElement('li');
+    li.innerHTML = elem;
+    li.addEventListener('click', function () {
+        li.innerHTML = li.innerHTML + '!';
+    })
+    parent.appendChild(li);
+}
+
+//Задача 218.4
+
+"use strict";
+
+let parent = document.querySelector('#parent');
+let arr = [1, 2, 3, 4, 5];
+
+for (let elem of arr) {
+    let li = document.createElement('li');
+    li.innerHTML = elem;
+    li.addEventListener('click', function func() {
+        li.innerHTML = li.innerHTML + '!';
+        this.removeEventListener('click', func);
+    })
+    parent.appendChild(li);
+}
