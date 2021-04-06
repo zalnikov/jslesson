@@ -1,0 +1,63 @@
+//Задача 212.1
+
+"use strict";
+
+let messeg = document.querySelector('#message');
+
+document.addEventListener('DOMContentLoaded', function () {
+    setTimeout (function () {
+        message.innerHTML = 'Привет!';
+    }, 10000);
+});
+
+//Задача 212.2
+
+"use strict";
+
+let i = 0;
+
+function timer() {
+    console.log(i++);
+    setTimeout(timer, 1000);
+}
+timer();
+
+//Задача 213.1
+
+<ol id="elem"></ol>
+"use strict";
+
+let elem = document.querySelector('#elem');
+let createLi = document.createElement('li');
+createLi.innerHTML = 'пункт';
+elem.appendChild(createLi);
+
+//Задача 213.2
+
+"use strict";
+
+let button = document.querySelector('#button');
+let elem = document.querySelector('#elem');
+
+button.addEventListener('click', function() {
+    let createLi = document.createElement('li');
+    createLi.innerHTML = 'Пункт';
+    elem.appendChild(createLi);
+})
+
+//Задача 214.1
+
+"use strict";
+
+let button = document.querySelector('#button');
+let elem = document.querySelector('#elem');
+
+
+button.addEventListener('click', function() {
+    let createLi = document.createElement('li');
+    createLi.innerHTML = 'Пункт';
+    createLi.addEventListener('click', function () {
+        createLi.innerHTML = createLi.innerHTML + '!';
+    })
+    elem.appendChild(createLi);
+})
