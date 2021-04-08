@@ -25,17 +25,20 @@
 <script>
 "use strict";
 
-let trs = document.querySelectorAll('#table tr');
+let tds = document.querySelectorAll('#table td');
 
-for (let i = 0; i < trs.length; i++) {
-	let tr = trs[i];
-	let tds = tr.querySelectorAll('td');
-	
-	for (let j = 0; j < tds.length; j++) {
-		let td = tds[j];
-		td.innerHTML = (j + 1);
-	}
+let i = 1;
+for (let td of tds) {
+	td.addEventListener('click', function() {
+		this.innerHTML = i;
+        if (i == 1) {
+			i = 2;
+		} else if (i == 2 ){
+			i = 3;
+		} else {
+            i = 1;
+        }
+	});
 }
-
 </script>
 </html>
