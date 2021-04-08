@@ -1,0 +1,250 @@
+//Задача 220.1
+
+"use strict";
+
+let table = document.querySelector('#table');
+let k = 1;
+
+for (let i = 0; i < 5; i++) {
+    let tr = document.createElement('tr');
+
+    for (let i = 0; i < 5; i++) {
+        let td = document.createElement('td');
+        td.innerHTML = k;
+        tr.appendChild(td);
+        k++;
+    }
+    table.appendChild(tr);
+}
+
+
+//Задача 220.2
+
+"use strict";
+
+let table = document.querySelector('#table');
+let k = 2;
+
+for (let i = 0; i < 5; i++) {
+    let tr = document.createElement('tr');
+
+    for (let i = 0; i < 5; i++) {
+        let td = document.createElement('td');
+        td.innerHTML = k;
+        tr.appendChild(td);
+        k = k +2;
+    }
+    table.appendChild(tr);
+}
+
+//Задача 221.1
+
+"use strict";
+
+let table = document.querySelector('#table');
+let arr = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]];
+
+for (let subArr of arr) {
+    let tr = document.createElement('tr');
+
+    for (let elem of subArr) {
+        let td = document.createElement('td');
+        td.innerHTML = elem;
+        tr.appendChild(td);
+    }
+    table.appendChild(tr);
+}
+
+//Задача 221.2
+
+"use strict";
+
+let table = document.querySelector('#table');
+let arr = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]];
+
+for (let subArr of arr) {
+    let tr = document.createElement('tr');
+
+    for (let elem of subArr) {
+        let td = document.createElement('td');
+        td.innerHTML = elem ** 2;
+        tr.appendChild(td);
+    }
+    table.appendChild(tr);
+}
+
+//Задача 222.1
+
+"use strict";
+
+let table = document.querySelector('#table');
+let employees = [
+	{name: 'employee1', age: 30, salary: 400},
+	{name: 'employee2', age: 31, salary: 500},
+	{name: 'employee3', age: 32, salary: 600},
+];
+
+for (let employee of employees) {
+    let tr = document.createElement('tr');
+    
+    let td1 = document.createElement('td');
+    td1.innerHTML = employee.name;
+    tr.appendChild(td1);
+
+    let td2 = document.createElement('td');
+    td2.innerHTML = employee.age;
+    tr.appendChild(td2);
+
+    let td3 = document.createElement('td');
+    td3.innerHTML = employee.salary;
+    tr.appendChild(td3);
+
+    table.appendChild(tr);
+}
+
+//Задача 222.2
+
+"use strict";
+
+let table = document.querySelector('#table');
+let employees = [
+	{name: 'employee1', age: 30, salary: 400},
+	{name: 'employee2', age: 31, salary: 500},
+	{name: 'employee3', age: 32, salary: 600},
+];
+
+for (let employee of employees) {
+    let tr = document.createElement('tr');
+    
+    let td1 = document.createElement('td');
+    td1.innerHTML = employee.name;
+    tr.appendChild(td1);
+
+    let td2 = document.createElement('td');
+    td2.innerHTML = employee.age;
+    tr.appendChild(td2);
+    td2.addEventListener('click', function () {
+        td2.innerHTML = Number(td2.innerHTML) + 1;
+    })
+
+    let td3 = document.createElement('td');
+    td3.innerHTML = employee.salary;
+    tr.appendChild(td3);
+
+    table.appendChild(tr);
+}
+
+//Задача 222.3
+
+"use strict";
+
+let table = document.querySelector('#table');
+let employees = [
+	{name: 'employee1', age: 30, salary: 400},
+	{name: 'employee2', age: 31, salary: 500},
+	{name: 'employee3', age: 32, salary: 600},
+];
+
+for (let employee of employees) {
+    let tr = document.createElement('tr');
+    
+    let td1 = document.createElement('td');
+    td1.innerHTML = employee.name;
+    tr.appendChild(td1);
+
+    let td2 = document.createElement('td');
+    td2.innerHTML = employee.age;
+    tr.appendChild(td2);
+
+    let td3 = document.createElement('td');
+    td3.innerHTML = employee.salary;
+    tr.appendChild(td3);
+    td3.addEventListener('click', function () {
+        td3.innerHTML = (td3.innerHTML * 0.1) + Number(td3.innerHTML);
+    })
+
+    table.appendChild(tr);
+}
+
+//Задача 223.1
+
+"use strict";
+
+let table = document.querySelector('#table');
+let button = document.querySelector('#createLine');
+
+
+
+button.addEventListener('click', function () {
+    let tr = document.createElement('tr');
+    for (let i = 1; i <= 3; i++) {
+        let td = document.createElement('td');
+        td.innerHTML = i;
+        tr.appendChild(td);
+    }
+    table.appendChild(tr);
+})
+
+//Задача 223.2
+
+"use strict";
+
+let table = document.querySelector('#table');
+let button = document.querySelector('#button');
+
+button.addEventListener('click', function () {
+    let trs = document.querySelectorAll('#table tr');
+    for(let tr of trs) {
+        let td = document.createElement('td');
+        tr.appendChild(td);
+    }
+
+    let newTr = document.createElement('tr');
+    for (let i = 1; i <= trs.length + 1; i++) {
+        let td = document.createElement('td')
+        newTr.appendChild(td);
+    }
+    table.appendChild(newTr);
+    
+})
+
+//Задача 224.1
+
+"use strict";
+
+let table = document.querySelector('#table');
+let button = document.querySelector('#button');
+
+button.addEventListener('click', function () {
+    let tds = document.querySelectorAll('#table td');
+    for (let td of tds) {
+        td.innerHTML = Number(td.innerHTML) + Number(td.innerHTML);
+    }
+})
+
+//Задача 225.1
+
+"use strict";
+
+let tds = document.querySelectorAll('#table td');
+let k = tds.length;
+
+for (let td of tds) {
+    td.innerHTML = k--;
+}
+
+//Задача 226.1
+
+"use strict";
+
+let trs = document.querySelectorAll('#table tr');
+
+for (let i = 0; i < trs.length; i++) {
+	let tr = trs[i];
+	let tds = tr.querySelectorAll('td');
+	
+	for (let j = 0; j < tds.length; j++) {
+		let td = tds[j];
+		td.innerHTML = (j + 1);
+	}
+}

@@ -8,40 +8,34 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<input type="text" id="line" value="0">
-<input type="text" id="column" value ="0">
-<input type="button" value="generate" id="button">
-<table id="table"></table>
+<input type="button" value="push" id="button">
+<table id="table">
+    <tr>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
 
 </body>
 
 <script>
 "use strict";
 
-let line = document.querySelector('#line');
-let column = document.querySelector('#column');
-let button = document.querySelector('#button');
-let table = document.querySelector('#table');
+let trs = document.querySelectorAll('#table tr');
 
-button.addEventListener('click', function() {
-    createTable(line.value, column.value);
-});
-
-function createTable (x, y) {
-    for (let i = 1; i <= x; i++) {
-    let tr = document.createElement('tr');
-
-        for (let i = 1; i <= y; i++) {
-            let td = document.createElement('td');
-            td.innerHTML = 'x';
-            tr.appendChild(td);
-        };
-        table.appendChild(tr);
-    };
+for (let i = 0; i < trs.length; i++) {
+	let tr = trs[i];
+	let tds = tr.querySelectorAll('td');
+	
+	for (let j = 0; j < tds.length; j++) {
+		let td = tds[j];
+		td.innerHTML = (j + 1);
+	}
 }
-
-
 
 </script>
 </html>
