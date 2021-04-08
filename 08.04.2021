@@ -248,3 +248,51 @@ for (let i = 0; i < trs.length; i++) {
 		td.innerHTML = (j + 1);
 	}
 }
+
+//Задача 227.1
+
+"use strict";
+
+let tds = document.querySelectorAll('#table td');
+
+for (let i = 0; i < tds.length; i++) {
+	tds[i].addEventListener('click', function() {
+		this.innerHTML = tds.length - i;
+	});
+}
+
+//Задача 228.1
+
+"use strict";
+
+let tds = document.querySelectorAll('#table td');
+
+let i = 1;
+for (let td of tds) {
+	td.addEventListener('click', function func() {
+        if (td.innerHTML < 1){
+            this.innerHTML = i;
+            i++;
+        }
+	});
+}
+
+//Задача 228.2
+
+"use strict";
+
+let tds = document.querySelectorAll('#table td');
+
+let i = 1;
+for (let td of tds) {
+	td.addEventListener('click', function() {
+		this.innerHTML = i;
+        if (i == 1) {
+			i = 2;
+		} else if (i == 2 ){
+			i = 3;
+		} else {
+            i = 1;
+        }
+	});
+}
