@@ -8,37 +8,47 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<input type="button" value="push" id="button">
+
 <table id="table">
     <tr>
-        <td></td>
-        <td></td>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
     </tr>
     <tr>
-        <td></td>
-        <td></td>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>8</td>
+        <td>9</td>
     </tr>
 </table>
 
 </body>
 
 <script>
+
 "use strict";
+let table = document.querySelector('#table');
+let trs = document.querySelectorAll('#table tr');
 
-let tds = document.querySelectorAll('#table td');
+for(let tr of trs) {
+    let td = document.createElement('td');
+    let remove = document.createElement('a');
+    remove.href = '';
+    remove.innerHTML = 'remove';
+    td.appendChild(remove);
+    tr.appendChild(td);
 
-let i = 1;
-for (let td of tds) {
-	td.addEventListener('click', function() {
-		this.innerHTML = i;
-        if (i == 1) {
-			i = 2;
-		} else if (i == 2 ){
-			i = 3;
-		} else {
-            i = 1;
-        }
-	});
+    remove.addEventListener('click', function (event) {
+        tr.parentElement.removeChild(tr);
+        event.preventDefault();
+    })
+
 }
+
 </script>
 </html>

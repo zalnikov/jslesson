@@ -1,0 +1,130 @@
+//Задача 229.1
+
+"use strict";
+
+let button = document.querySelector('#button');
+let parent = document.querySelector('#parent');
+let elem   = document.querySelector('#elem');
+
+button.addEventListener('click', function () {
+    parent.removeChild(elem);
+})
+
+//Задача 229.2
+
+"use strict";
+
+let button = document.querySelector('#button');
+let parent = document.querySelector('#parent');
+
+button.addEventListener('click', function () {
+    let allLiInParent = document.querySelectorAll('#parent li');
+    parent.removeChild(allLiInParent[allLiInParent.length - 1]);
+})
+
+//Задача 229.3
+
+"use strict";
+
+let elem = document.querySelector('#elem');
+
+elem.addEventListener('click', function () {
+    this.parentElement.removeChild(this);
+})
+
+//Задача 229.4
+
+let elem = document.querySelector('#elem');
+
+elem.addEventListener('click', function () {
+    this.remove();
+})
+
+//Задача 230.1
+
+let allLi = document.querySelectorAll('#parent li');
+
+for (let elem of allLi) {
+    elem.addEventListener('click', function () {
+        this.remove();
+    })
+}
+
+//Задача 231.1
+
+"use strict";
+
+let parent = document.querySelector('#parent');
+let button = document.querySelector('#button');
+let i = 3;
+
+button.addEventListener('click', function () {
+    let li = document.createElement('li');
+    li.innerHTML = ++i;
+    parent.appendChild(li);
+
+    let allLi = document.querySelectorAll('#parent li');
+        for (let elem of allLi) {
+            elem.addEventListener('click', function () {
+            elem.remove();
+        })
+    }
+})
+
+let allLi = document.querySelectorAll('#parent li');
+    for (let elem of allLi) {
+        elem.addEventListener('click', function () {
+        elem.remove();
+    })
+}
+
+//Задача 232.1
+
+"use strict";
+
+let elem   = document.querySelector('#elem');
+let remove = document.querySelector('#remove');
+
+remove.addEventListener('click', function (event) {
+    elem.parentElement.removeChild(elem);
+    event.preventDefault();
+})
+
+//Задача 233.1
+
+"use strict";
+
+let elems   = document.querySelectorAll('#parent li');
+
+for (let elem of elems) {
+    let remove = document.createElement('a');
+    remove.href = '';
+    remove.innerHTML = 'remove';
+    elem.appendChild(remove);
+
+    remove.addEventListener('click', function (event) {
+        elem.parentElement.removeChild(elem);
+        event.preventDefault();
+    })
+}
+
+//Задача 233.2
+
+"use strict";
+let table = document.querySelector('#table');
+let trs = document.querySelectorAll('#table tr');
+
+for(let tr of trs) {
+    let td = document.createElement('td');
+    let remove = document.createElement('a');
+    remove.href = '';
+    remove.innerHTML = 'remove';
+    td.appendChild(remove);
+    tr.appendChild(td);
+
+    remove.addEventListener('click', function (event) {
+        tr.parentElement.removeChild(tr);
+        event.preventDefault();
+    })
+
+}
