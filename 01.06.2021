@@ -1,0 +1,243 @@
+//Задача 234.1
+
+"use strict";
+let elem = document.querySelector('#elem');
+
+let startElem = document.createElement('li');
+let finishElem = document.createElement('li');
+
+startElem.innerHTML = 'Start';
+elem.prepend(startElem);
+finishElem.innerHTML = 'Finish';
+elem.append(finishElem);
+
+//Задача 234.2
+
+"use strict";
+let parent = document.querySelector('#parent');
+let elem = document.querySelector('#elem');
+
+let li = document.createElement('li');
+li.innerHTML = 'new';
+parent.insertBefore(li, elem);
+
+//Задача 234.3
+
+"use strict";
+let parent = document.querySelector('#parent');
+let elem = document.querySelector('#elem');
+
+let li = document.createElement('li');
+li.innerHTML = 'new';
+parent.insertBefore(li, elem);
+
+li.addEventListener('click', function () {
+    li.innerHTML += '!';
+})
+
+//Задача 235.1
+
+"use strict";
+let elem = document.querySelector('#elem');
+
+let p = document.createElement('p');
+p.innerHTML = '!!!';
+elem.insertAdjacentElement('beforeBegin', p);
+
+//Задача 235.2
+
+"use strict";
+let elem = document.querySelector('#elem');
+
+let p = document.createElement('p');
+p.innerHTML = '!!!';
+elem.insertAdjacentElement('afterEnd', p);
+
+//Задача 235.3
+
+"use strict";
+let elem = document.querySelector('#elem');
+
+let p = document.createElement('p');
+p.innerHTML = '!!!';
+elem.insertAdjacentElement('afterBegin', p);
+
+//Задача 235.4
+
+"use strict";
+let elem = document.querySelector('#elem');
+
+let p = document.createElement('p');
+p.innerHTML = '!!!';
+elem.insertAdjacentElement('BeforeEnd', p);
+
+//Задача 235.5
+
+"use strict";
+let elem = document.querySelector('#elem');
+
+elem.insertAdjacentHTML('BeforeBegin', '<div class="www"><p>text</p><p>text</p><input></div>');
+
+//Задача 236.1
+
+"use strict";
+
+let button = document.querySelector('#button');
+let textInput = document.querySelector('.textInput');
+
+let cloneInput = textInput.cloneNode(true);
+
+button.addEventListener('click', function () {
+    button.insertAdjacentElement('afterEnd', cloneInput);
+})
+
+
+//Задача 237.1
+
+"use strict";
+
+let elem = document.querySelector('#elem');
+console.log(elem.matches('div.www'));
+
+//Задача 237.2
+
+let elem = document.querySelector('#elem');
+console.log(elem.matches('p'));
+
+//Задача 237.3
+
+"use strict";
+
+let elem1 = document.querySelector('#elem1');
+let elem2 = document.querySelector('#elem2');
+
+console.log(elem1.contains(elem2));
+
+//Задача 238.1
+
+"use strict";
+
+let elem = document.querySelector('#elem');
+let input = document.querySelector('#input');
+
+input.value = elem.innerHTML; // записываем в инпут текст абзаца
+
+input.addEventListener('input', function() {
+	elem.innerHTML = this.value;
+});
+
+//Задача 238.2
+
+"use strict";
+
+let elem = document.querySelector('#elem');
+
+elem.addEventListener('click', function () {
+    let input = document.createElement('input');
+    input.value = elem.innerHTML;
+
+    input.addEventListener('blur', function () {
+        elem.innerHTML = input.value;
+        this.parentElement.removeChild(this);
+    })
+
+    elem.parentElement.appendChild(input);
+})
+
+//Задача 239.1
+
+"use strict";
+
+let elem = document.querySelector('#elem');
+
+elem.addEventListener('click', function func () {
+    let input = document.createElement('input');
+    input.value = elem.innerHTML;
+    elem.innerHTML = '';
+    elem.appendChild(input);
+
+    input.addEventListener('blur', function () {
+        elem.innerHTML = input.value;
+        elem.addEventListener('click', func);
+    })
+
+    elem.removeEventListener('click', func);
+})
+
+//Задача 240.1
+
+"use strict";
+
+let elems = document.querySelectorAll('li');
+
+for (let elem of elems) {
+    elem.addEventListener('click', function func () {
+        let input = document.createElement('input');
+        input.value = elem.innerHTML;
+        elem.innerHTML = '';
+        elem.appendChild(input);
+
+        input.addEventListener('blur', function () {
+            elem.innerHTML = input.value;
+            elem.addEventListener('click', func);
+        })
+
+    elem.removeEventListener('click', func);
+    })
+}
+
+//Задача 240.2
+
+"use strict";
+
+let elems = document.querySelectorAll('table td');
+
+for (let elem of elems) {
+    elem.addEventListener('click', function func () {
+        let input = document.createElement('input');
+        input.value = elem.innerHTML;
+        elem.innerHTML = '';
+        elem.appendChild(input);
+
+        input.addEventListener('blur', function () {
+            elem.innerHTML = input.value;
+            elem.addEventListener('click', func);
+        })
+
+    elem.removeEventListener('click', func);
+    })
+}
+
+//Задача 241.1
+
+"use strict";
+
+let elems = document.querySelectorAll('#parent p');
+
+for (let elem of elems) {
+    let delLink = document.createElement('a');
+    delLink.href = '';
+    delLink.innerHTML = 'delete';
+    elem.insertAdjacentElement('beforeEnd', delLink);
+    delLink.addEventListener('click', function () {
+        elem.parentElement.removeChild(elem);
+        event.preventDefault();
+    })
+}
+
+let spans = document.querySelectorAll('#parent span');
+
+for (let span of spans) {
+    span.addEventListener('click', function func () {
+        let input = document.createElement('input');
+        input.value = span.innerHTML;
+        span.innerHTML = '';
+        span.appendChild(input);
+
+        input.addEventListener('blur', function () {
+            span.innerHTML = input.value;
+            span.addEventListener('click', func);
+        })
+    span.removeEventListener('click', func);
+    })
+}

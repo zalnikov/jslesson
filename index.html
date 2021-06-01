@@ -9,46 +9,19 @@
 </head>
 <body>
 
-<table id="table">
-    <tr>
-        <td>1</td>
-        <td>2</td>
-        <td>3</td>
-    </tr>
-    <tr>
-        <td>4</td>
-        <td>5</td>
-        <td>6</td>
-    </tr>
-    <tr>
-        <td>7</td>
-        <td>8</td>
-        <td>9</td>
-    </tr>
-</table>
+<div id="parent">
+    <p>text1</p>
+    <p>text2</p>
+    <p>text3</p>
+</div>
 
 </body>
 
 <script>
 
 "use strict";
-let table = document.querySelector('#table');
-let trs = document.querySelectorAll('#table tr');
 
-for(let tr of trs) {
-    let td = document.createElement('td');
-    let remove = document.createElement('a');
-    remove.href = '';
-    remove.innerHTML = 'remove';
-    td.appendChild(remove);
-    tr.appendChild(td);
 
-    remove.addEventListener('click', function (event) {
-        tr.parentElement.removeChild(tr);
-        event.preventDefault();
-    })
-
-}
 
 </script>
 </html>
