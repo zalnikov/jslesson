@@ -1,0 +1,111 @@
+//Задача 241.2
+
+"use strict";
+
+let elems = document.querySelectorAll('#parent p');
+
+for (let elem of elems) {
+    let spanTag = document.createElement('span');
+    let delLink = document.createElement('a');
+    spanTag.innerHTML = elem.innerHTML;
+    elem.innerHTML = '';
+    delLink.href = '';
+    delLink.innerHTML = 'delete';
+    
+    elem.appendChild(spanTag);
+    elem.appendChild(delLink);
+
+    delLink.addEventListener('click', function () {
+        elem.parentElement.removeChild(elem);
+        event.preventDefault();
+    })
+
+    spanTag.addEventListener('click', function func () {
+        let input = document.createElement('input');
+        input.value = spanTag.innerHTML;
+        spanTag.innerHTML = '';
+        spanTag.appendChild(input);
+
+        input.addEventListener('blur', function () {
+            spanTag.innerHTML = input.value;
+            span.addEventListener('click', func);
+        })
+    spanTag.removeEventListener('click', func);
+    })
+
+}
+
+//Задача 242.1
+
+"use strict";
+
+let elems = document.querySelectorAll('p');
+
+for (let elem of elems) {
+    let spanTag = document.createElement('span');
+    let strikeoutLink = document.createElement('a');
+    spanTag.innerHTML = elem.innerHTML;
+    elem.innerHTML = '';
+    strikeoutLink.href = '';
+    strikeoutLink.innerHTML = 'textStrikeout';
+    
+    elem.appendChild(spanTag);
+    elem.appendChild(strikeoutLink);
+
+    strikeoutLink.addEventListener('click', function () {
+        spanTag.classList.toggle('strikeoutLink')
+        event.preventDefault();
+    })
+
+}
+
+//Задача 242.2
+
+"use strict";
+
+let elems = document.querySelectorAll('p');
+
+for (let elem of elems) {
+    let spanTag = document.createElement('span');
+    let strikeoutLink = document.createElement('a');
+    spanTag.innerHTML = elem.innerHTML;
+    elem.innerHTML = '';
+    strikeoutLink.href = '';
+    strikeoutLink.innerHTML = 'textStrikeout';
+    
+    elem.appendChild(spanTag);
+    elem.appendChild(strikeoutLink);
+
+    strikeoutLink.addEventListener('click', function () {
+        spanTag.classList.add('strikeoutLink')
+        strikeoutLink.parentElement.removeChild(strikeoutLink);
+        event.preventDefault();
+    })
+}
+
+//Задача 242.3 + Задача 242.4
+
+"use strict";
+
+let tableTrs = document.querySelectorAll('table tr');
+
+for (let tr of tableTrs) {
+    let newTd = document.createElement('td');
+    let bgColorLink = document.createElement('a');
+    bgColorLink.href = '';
+    bgColorLink.innerHTML = 'bg color green';
+    newTd.appendChild(bgColorLink);
+    tr.appendChild(newTd);
+
+    bgColorLink.addEventListener('click', () => {
+        tr.classList.toggle('bgColorGreen');
+        event.preventDefault();
+    })
+}
+
+//Задача 243.1
+
+"use strict";
+onOf.addEventListener('click', function() {
+	elem.classList.toggle('hidden');
+});
