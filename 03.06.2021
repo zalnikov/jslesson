@@ -1,0 +1,109 @@
+//Задача 245.1 Задача 245.2
+
+let allLi = document.querySelectorAll('ul li');
+
+for (let li of allLi) {
+    li.addEventListener('click', function () {
+        this.classList.toggle('active');
+    })
+}
+
+//Задача 246.2
+
+'use strict';
+
+let tds = document.querySelectorAll('table td'); // выбираем все td из table
+
+let i = 0; // определяем переменную счётчика
+let colors = ['color1', 'color2', 'color3']; // массив с цветами
+
+for (let td of tds) { // запуск цикла перебора ячеек таблицы
+    td.addEventListener('click', function () { // навешиваем событие по клику на ячейку
+        this.classList.add(colors[i]); //добовляем css класс ячейке в зависимости от значения счётчика
+
+        i++; // увеличиваем счётчик
+        if (i == colors.length) { // если счётчик подешел к концу кол-ва цветов то обнуляем
+            i = 0;
+        }
+    })
+}
+
+//Задача 247.1
+
+let tds = document.querySelectorAll('#table td'); //Выбираем ячейки в таблице
+
+for (let td of tds) { //Запускаем цикл перебора всех найденных ячеек
+	td.addEventListener('click', function() { //Навешиваем функцию по событию
+		let activeTds = document.querySelectorAll('#table td.active'); //Выбираем ячейки с классом active
+		
+		if (activeTds && activeTds.length < 3) { //Ориентируясь на кол-во найденных ячеек с классом acive
+			this.classList.add('active'); //Разрешаем добавление класса
+		}
+	});
+}
+
+//Задача 247.2
+
+let tds = document.querySelectorAll('table td');
+
+for (let td of tds) {
+    td.addEventListener('click', function () {
+        let trs = td.parentElement.children;
+        let count = 0;
+        for (let tdOfTr of trs) {
+            if (tdOfTr.classList.contains('active')) {
+                count += 1;
+            }
+        }
+        if (count < 4) {
+            this.classList.add('active');
+        }
+    })
+}
+
+//Задача 247.3
+
+'use strict';
+
+let tds = document.querySelectorAll('table td');
+
+for (let td of tds) {
+    td.addEventListener('click', function () {
+        let previousElem = td.previousElementSibling;
+        let nextElem = td.nextElementSibling;
+
+        if (previousElem === null || nextElem === null) {
+            if (previousElem === null && nextElem.classList.contains('active') == false) {
+                this.classList.add('active');
+            }
+            if (nextElem === null && previousElem.classList.contains('active') == false) {
+                this.classList.add('active');
+            }
+        } else {
+            if (previousElem.classList.contains('active') == false && nextElem.classList.contains('active') == false) {
+                this.classList.add('active');
+            }
+        }
+    })
+}
+
+//Задача 247.4
+
+'use strict';
+let trs = document.querySelectorAll('table tr');
+
+for (let i = 0; i < trs.length; i++) {
+    for (let j = 0; j < trs[i].children.length; j++) {
+        trs[i].children[j].addEventListener('click', function () {
+            if (i - 1 < 0 && trs[i + 1].children[j].classList.contains('active') == false) {
+                trs[i].children[j].classList.add('active');
+            } else if (i == trs.length - 1 && trs[i - 1].children[j].classList.contains('active') == false) {
+                trs[i].children[j].classList.add('active');
+            } else if (trs[i - 1].children[j].classList.contains('active') == false && trs[i + 1].children[j].classList.contains('active') == false) {
+                trs[i].children[j].classList.add('active');
+            }
+        })
+    }
+}
+
+//тут нюансы с крайними ячейками , разобрался на половину )
