@@ -33,3 +33,6 @@ td {
 .active {
 	background-color: red;
 }
+.crossOut {
+	text-decoration: line-through;
+}

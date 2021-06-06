@@ -1,0 +1,267 @@
+//Задача 248.1
+
+'use strict';
+let arr = [1, 2 ,3 ,4, 5, 6];
+let list = document.createElement('ul');
+document.body.append(list);
+
+for (let elem of arr) {
+    let li = document.createElement('li');
+    li.innerHTML = elem;
+    list.appendChild(li);
+}
+
+//Задача 248.2
+
+'use strict';
+let arr = [1, 2 ,3 ,4, 5, 6];
+let list = document.createElement('ul');
+document.body.append(list);
+
+for (let elem of arr) {
+    let li = document.createElement('li');
+    li.innerHTML = elem;
+    list.appendChild(li);
+
+    li.addEventListener('click', function func () {
+        let input = document.createElement('input');
+        input.value = li.innerHTML;
+        li.innerHTML = '';
+        li.appendChild(input);
+
+        input.addEventListener('blur', function () {
+            li.innerHTML = input.value;
+            li.addEventListener('click', func);
+        })
+        li.removeEventListener('click', func);
+    })
+}
+
+//Задача 248.3
+//Попытался сделать через добавление новых элементов в массив, но задачи на практивку изменения элементов
+//по этому сделал два варианта.
+//Первый через массив
+'use strict';
+let arr = [1, 2 ,3 ,4, 5, 6];
+
+function createList () {
+    let list = document.createElement('ul');
+    document.body.append(list);
+
+    for (let elem of arr) {
+        let li = document.createElement('li');
+        li.innerHTML = elem;
+        list.appendChild(li);
+
+        li.addEventListener('click', function func () {
+            let input = document.createElement('input');
+            input.value = li.innerHTML;
+            li.innerHTML = '';
+            li.appendChild(input);
+
+            input.addEventListener('blur', function () {
+                li.innerHTML = input.value;
+                li.addEventListener('click', func);
+            })
+            li.removeEventListener('click', func);
+        })
+    }
+    
+    let input = document.createElement('input');
+    document.body.append(input);
+    input.addEventListener('blur', function () {
+        arr.push(input.value);
+        let ul = document.querySelector('ul');
+        document.body.removeChild(ul);
+        document.body.removeChild(input);
+        createList();
+    })
+}
+
+document.addEventListener('DOMContentLoaded', createList());
+
+//Второй вариант через добавления элементов
+
+'use strict';
+let arr = [1, 2 ,3 ,4, 5, 6];
+
+let list = document.createElement('ul');
+document.body.append(list);
+
+for (let elem of arr) {
+    let li = document.createElement('li');
+    li.innerHTML = elem;
+    list.appendChild(li);
+
+    li.addEventListener('click', function func () {
+        let input = document.createElement('input');
+        input.value = li.innerHTML;
+        li.innerHTML = '';
+        li.appendChild(input);
+
+        input.addEventListener('blur', function () {
+            li.innerHTML = input.value;
+            li.addEventListener('click', func);
+        })
+        li.removeEventListener('click', func);
+    })
+}
+
+let input = document.createElement('input');
+document.body.append(input);
+input.addEventListener('blur', () => {
+    let ul = document.querySelector('ul');
+    let newLi = document.createElement('li');
+    newLi.innerHTML = input.value;
+
+    newLi.addEventListener('click', function func () {
+        let input = document.createElement('input');
+        input.value = newLi.innerHTML;
+        newLi.innerHTML = '';
+        newLi.appendChild(input);
+
+        input.addEventListener('blur', function () {
+            newLi.innerHTML = input.value;
+            newLi.addEventListener('click', func);
+        })
+        newLi.removeEventListener('click', func);
+    });
+
+    ul.append(newLi);
+    input.value = '';
+})
+
+//Задача 248.4 Переписал всё через функции.
+
+'use strict';
+let arr = [1, 2 ,3 ,4, 5, 6];
+
+let list = document.createElement('ul');
+document.body.append(list);
+
+for (let elem of arr) {                            //Цикл из массива в li
+    let li = document.createElement('li');
+    let span = document.createElement('span');
+    span.innerHTML = elem;
+    li.appendChild(span);
+    list.appendChild(li);
+    removeLiLink(li);
+
+    span.addEventListener('click', inputEdit);
+}
+
+let input = document.createElement('input');       //Инпут для добавления новых li
+document.body.append(input);
+input.addEventListener('blur', () => {
+    let ul = document.querySelector('ul');
+    let newLi = document.createElement('li');
+    let newSpan = document.createElement('span');
+    newSpan.innerHTML = input.value;
+
+    newSpan.addEventListener('click', inputEdit);
+    
+    newLi.append(newSpan);
+    removeLiLink(newLi);
+    ul.append(newLi);
+    input.value = '';
+})
+
+function inputEdit() {                           //Функция редактирования существующих li
+    let input = document.createElement('input');
+    input.value = this.innerHTML;
+    this.innerHTML = '';
+    this.appendChild(input);
+
+    input.addEventListener('blur', () => {         //Помучался с передачей контекста, всплыло 
+        this.innerHTML = input.value;              //в памяти что у стрелочной функции его нет.
+        this.addEventListener('click', inputEdit); //попробовал, вроде работает )
+    })
+    this.removeEventListener('click', inputEdit);
+}
+
+function removeLiLink (li) {                     //Функция добавлние ссылки для удаления li
+    let link = document.createElement('a');
+    link.href = '';
+    link.innerHTML = 'del'
+    li.appendChild(link);
+
+    link.addEventListener('click', function () {
+        li.parentElement.removeChild(li);
+        event.preventDefault();
+    })
+    
+}
+
+//Задача 248.5
+
+'use strict';
+let arr = [1, 2 ,3 ,4, 5, 6];
+
+let list = document.createElement('ul');
+document.body.append(list);
+
+for (let elem of arr) {
+    let li = document.createElement('li');
+    let span = document.createElement('span');
+    span.innerHTML = elem;
+    li.appendChild(span);
+    list.appendChild(li);
+    removeLiLink(li);
+    crossOut(li, span);
+    span.addEventListener('click', inputEdit);
+}
+
+let input = document.createElement('input');
+document.body.append(input);
+input.addEventListener('blur', () => {
+    let ul = document.querySelector('ul');
+    let newLi = document.createElement('li');
+    let newSpan = document.createElement('span');
+    newSpan.innerHTML = input.value;
+
+    newSpan.addEventListener('click', inputEdit);
+    
+    newLi.append(newSpan);
+    removeLiLink(newLi);
+    crossOut(newLi, newSpan);
+    ul.append(newLi);
+    input.value = '';
+})
+
+function inputEdit() {
+    let input = document.createElement('input');
+    input.value = this.innerHTML;
+    this.innerHTML = '';
+    this.appendChild(input);
+
+    input.addEventListener('blur', () => {
+        this.innerHTML = input.value;
+        this.addEventListener('click', inputEdit);
+    })
+    this.removeEventListener('click', inputEdit);
+}
+
+function removeLiLink (li) {
+    let link = document.createElement('a');
+    link.href = '';
+    link.innerHTML = 'del'
+    li.appendChild(link);
+
+    link.addEventListener('click', function () {
+        li.parentElement.removeChild(li);
+        event.preventDefault();
+    })
+    
+}
+
+function crossOut(li, span) {                                    //У функции два параметра т.к.
+    let crossOutLink = document.createElement('a');              //Ссылку мы добовляем в родителя а манипуляции делаем с потомком
+    crossOutLink.href = '';
+    crossOutLink.innerHTML = 'crossout';
+    li.appendChild(crossOutLink);
+
+    crossOutLink.addEventListener('click', function () {
+        span.classList.toggle('crossOut');
+        event.preventDefault();
+    })
+}

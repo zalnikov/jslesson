@@ -1,19 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+//Задача 248.6
 
+'use strict';
+let employees = [
+	{name: 'employee1', age: 30, salary: 400},
+	{name: 'employee2', age: 31, salary: 500},
+	{name: 'employee3', age: 32, salary: 600},
+];
 
+//Получаем список ключей объекта
+let allArrKeys = [];
+for (let employee of employees) {
+    let keyEmployee = Object.keys(employee);
+    allArrKeys = allArrKeys.concat(keyEmployee);
+}
+let arrKeys = Array.from(new Set(allArrKeys));
 
-</body>
+//Формируем каркас таблицы с шапкой из ключей объекта
+let table = document.createElement('table');
+document.body.appendChild(table);
+let tr = document.createElement('tr');
+table.appendChild(tr);
 
-<script>
+for (let key of arrKeys) {
+    let td = document.createElement('td');
+    td.innerHTML = key;
+    tr.appendChild(td);
+}
+
+//Тело таблицы
+for (let employee of employees) {
+    let tr = document.createElement('tr');
+    for (let key of arrKeys) {
+        let td = document.createElement('td');
+        td.innerHTML = employee[key];
+        tr.appendChild(td);
+    }
+    table.appendChild(tr);
+}
+
+//Задача 248.7
+
 'use strict';
 let employees = [
 	{name: 'employee1', age: 30, salary: 400},
@@ -65,5 +91,3 @@ function tdEdit () {
     })
     this.removeEventListener('click', tdEdit);
 }
-</script>
-</html>
