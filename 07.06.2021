@@ -1,0 +1,398 @@
+//Задача 248.8
+
+'use strict';
+let employees = [
+	{name: 'employee1', age: 30, salary: 400},
+	{name: 'employee2', age: 31, salary: 500},
+	{name: 'employee3', age: 32, salary: 600},
+];
+
+//Получаем список ключей объекта
+let allArrKeys = [];
+for (let employee of employees) {
+    let keyEmployee = Object.keys(employee);
+    allArrKeys = allArrKeys.concat(keyEmployee);
+}
+let arrKeys = Array.from(new Set(allArrKeys));
+
+//Формируем каркас таблицы с шапкой из ключей объекта
+let table = document.createElement('table');
+document.body.appendChild(table);
+let tr = document.createElement('tr');
+table.appendChild(tr);
+
+for (let key of arrKeys) {
+    let td = document.createElement('td');
+    td.innerHTML = key;
+    tr.appendChild(td);
+}
+
+//Тело таблицы
+for (let employee of employees) {
+    let tr = document.createElement('tr');
+    for (let key of arrKeys) {
+        let td = document.createElement('td');
+        td.innerHTML = employee[key];
+        td.addEventListener('click', tdEdit)
+        tr.appendChild(td);
+    }
+    table.appendChild(tr);
+}
+
+//Добовляем удаление ряда
+delRowLink()
+
+//Функция редактирование ячейки
+function tdEdit () {
+    let input = document.createElement('input');
+    input.value = this.innerHTML;
+    this.innerHTML = '';
+    this.appendChild(input);
+    input.addEventListener('blur', () => {         
+        this.innerHTML = input.value;
+        this.addEventListener('click', tdEdit);
+    })
+    this.removeEventListener('click', tdEdit);
+}
+
+function delRowLink() {
+    let trs = document.querySelectorAll('table tr');
+    for (let tr of trs) {
+        let td = document.createElement('td');
+        let delLink = document.createElement('a');
+        delLink.href = '';
+        delLink.innerHTML = 'DELETE';
+        td.appendChild(delLink);
+        tr.appendChild(td);
+
+        delLink.addEventListener('click', () => {
+            tr.parentElement.removeChild(tr);
+            event.preventDefault();
+        })
+    }
+}
+
+//Задача 248.9
+
+'use strict';
+let employees = [
+	{name: 'employee1', age: 30, salary: 400},
+	{name: 'employee2', age: 31, salary: 500},
+	{name: 'employee3', age: 32, salary: 600},
+];
+
+//Получаем список ключей объекта
+let allArrKeys = [];
+for (let employee of employees) {
+    let keyEmployee = Object.keys(employee);
+    allArrKeys = allArrKeys.concat(keyEmployee);
+}
+let arrKeys = Array.from(new Set(allArrKeys));
+
+//Формируем каркас таблицы с шапкой из ключей объекта
+let table = document.createElement('table');
+document.body.appendChild(table);
+let tr = document.createElement('tr');
+table.appendChild(tr);
+
+for (let key of arrKeys) {
+    let td = document.createElement('td');
+    td.innerHTML = key;
+    tr.appendChild(td);
+}
+
+//Тело таблицы
+for (let employee of employees) {
+    let tr = document.createElement('tr');
+    for (let key of arrKeys) {
+        let td = document.createElement('td');
+        td.innerHTML = employee[key];
+        td.addEventListener('click', tdEdit)
+        tr.appendChild(td);
+    }
+    delRowLink(tr);
+    table.appendChild(tr);
+}
+
+
+//Функция редактирование ячейки
+function tdEdit () {
+    let input = document.createElement('input');
+    input.value = this.innerHTML;
+    this.innerHTML = '';
+    this.appendChild(input);
+    input.addEventListener('blur', () => {         
+        this.innerHTML = input.value;
+        this.addEventListener('click', tdEdit);
+    })
+    this.removeEventListener('click', tdEdit);
+}
+
+//Удаление ряда
+//Переписал функцию для применения в операции "Добовление нового работника"
+//Принимает парамтером конкрутную строку таблицы
+function delRowLink(tr) {
+    let td = document.createElement('td');
+    let delLink = document.createElement('a');
+    delLink.href = '';
+    delLink.innerHTML = 'DELETE';
+    td.appendChild(delLink);
+    tr.appendChild(td);
+
+    delLink.addEventListener('click', () => {
+        tr.parentElement.removeChild(tr);
+        event.preventDefault();
+    })
+}
+
+//Добовляем нового работника
+for (let key of arrKeys) {
+    let input = document.createElement('input');
+    document.body.appendChild(input);
+    input.value = key;
+    input.addEventListener('focus', () => {
+        input.value = '';
+    })
+}
+
+let button = document.createElement('input');
+button.type = 'submit';
+button.value = 'ADDNEWEMPLOYEE'
+document.body.appendChild(button);
+
+button.addEventListener('click', () => {
+    let newEmployeeTr = document.createElement('tr');
+    let newEmployeeInputs = document.querySelectorAll('input:not([type="submit"])'); //тут пришлось по гуглить что бы кнопка не попадала
+    for (let inputData of newEmployeeInputs) {                                       //в выборку инпутов для ввода данных
+        let newEmployeeTd = document.createElement('td');
+        newEmployeeTd.innerHTML = inputData.value;
+        newEmployeeTd.addEventListener('click', tdEdit);
+        newEmployeeTr.appendChild(newEmployeeTd);
+    }
+    delRowLink(newEmployeeTr);
+    table.appendChild(newEmployeeTr);
+})
+
+//Задача 248.10
+
+'use strict';
+let employees = [
+	{name: 'employee1', age: 30, salary: 400},
+	{name: 'employee2', age: 31, salary: 500},
+	{name: 'employee3', age: 32, salary: 600},
+];
+
+let allArrKeys = [];
+for (let employee of employees) {
+    let keyEmployee = Object.keys(employee);
+    allArrKeys = allArrKeys.concat(keyEmployee);
+}
+let arrKeys = Array.from(new Set(allArrKeys));
+
+let ul = document.createElement('ul');
+document.body.appendChild(ul);
+
+
+for (let employee of employees) {
+    let li = document.createElement('li');
+    for (let key of arrKeys) {
+        let span = document.createElement('span');
+        span.innerHTML = employee[key] + ' ';
+        li.innerHTML += key + ': ';
+        li.appendChild(span);
+    }
+    ul.appendChild(li);
+}
+
+//Задача 248.11
+
+'use strict';
+let employees = [
+	{name: 'employee1', age: 30, salary: 400},
+	{name: 'employee2', age: 31, salary: 500},
+	{name: 'employee3', age: 32, salary: 600},
+];
+
+let allArrKeys = [];
+for (let employee of employees) {
+    let keyEmployee = Object.keys(employee);
+    allArrKeys = allArrKeys.concat(keyEmployee);
+}
+let arrKeys = Array.from(new Set(allArrKeys));
+
+let ul = document.createElement('ul');
+document.body.appendChild(ul);
+
+
+for (let employee of employees) {
+    let li = document.createElement('li');
+    for (let key of arrKeys) {
+        let b = document.createElement('b');
+        let span = document.createElement('span');
+        span.innerHTML = employee[key];
+        b.innerHTML = ' ' + key + ' ';
+        li.appendChild(b);
+        li.appendChild(span);
+        span.addEventListener('click', employeeEdit);
+    }
+    ul.appendChild(li);
+}
+
+function employeeEdit () {
+    let input = document.createElement('input');
+    input.value = this.innerHTML;
+    this.innerHTML = '';
+    this.appendChild(input);
+    input.addEventListener('blur', () => {         
+        this.innerHTML = input.value;
+        this.addEventListener('click', employeeEdit);
+    })
+    this.removeEventListener('click', employeeEdit);
+}
+
+//Задача 248.12
+
+'use strict';
+let employees = [
+	{name: 'employee1', age: 30, salary: 400},
+	{name: 'employee2', age: 31, salary: 500},
+	{name: 'employee3', age: 32, salary: 600},
+];
+
+let allArrKeys = [];
+for (let employee of employees) {
+    let keyEmployee = Object.keys(employee);
+    allArrKeys = allArrKeys.concat(keyEmployee);
+}
+let arrKeys = Array.from(new Set(allArrKeys));
+
+let ul = document.createElement('ul');
+document.body.appendChild(ul);
+
+
+for (let employee of employees) {
+    let li = document.createElement('li');
+    for (let key of arrKeys) {
+        let b = document.createElement('b');
+        let span = document.createElement('span');
+        span.innerHTML = employee[key];
+        b.innerHTML = ' ' + key + ' ';
+        li.appendChild(b);
+        li.appendChild(span);
+        span.addEventListener('click', employeeEdit);
+    }
+    ul.appendChild(li);
+    addDelLink(li);
+}
+
+function employeeEdit () {
+    let input = document.createElement('input');
+    input.value = this.innerHTML;
+    this.innerHTML = '';
+    this.appendChild(input);
+    input.addEventListener('blur', () => {         
+        this.innerHTML = input.value;
+        this.addEventListener('click', employeeEdit);
+    })
+    this.removeEventListener('click', employeeEdit);
+}
+
+function addDelLink(li) {
+    let delLink = document.createElement('a');
+    delLink.href = '';
+    delLink.innerHTML = 'DELETE';
+    li.appendChild(delLink);
+    delLink.addEventListener('click', () => {
+        li.parentElement.removeChild(li);
+        event.preventDefault();
+    })
+}
+
+//Задача 248.13
+
+'use strict';
+let employees = [
+	{name: 'employee1', age: 30, salary: 400},
+	{name: 'employee2', age: 31, salary: 500},
+	{name: 'employee3', age: 32, salary: 600},
+];
+
+let allArrKeys = [];
+for (let employee of employees) {
+    let keyEmployee = Object.keys(employee);
+    allArrKeys = allArrKeys.concat(keyEmployee);
+}
+let arrKeys = Array.from(new Set(allArrKeys));
+
+let ul = document.createElement('ul');
+document.body.appendChild(ul);
+
+
+for (let employee of employees) {
+    let li = document.createElement('li');
+    for (let key of arrKeys) {
+        let b = document.createElement('b');
+        let span = document.createElement('span');
+        span.innerHTML = employee[key];
+        b.innerHTML = ' ' + key + ' ';
+        li.appendChild(b);
+        li.appendChild(span);
+        span.addEventListener('click', employeeEdit);
+    }
+    ul.appendChild(li);
+    addDelLink(li);
+}
+
+function employeeEdit () {
+    let input = document.createElement('input');
+    input.value = this.innerHTML;
+    this.innerHTML = '';
+    this.appendChild(input);
+    input.addEventListener('blur', () => {         
+        this.innerHTML = input.value;
+        this.addEventListener('click', employeeEdit);
+    })
+    this.removeEventListener('click', employeeEdit);
+}
+
+function addDelLink(li) {
+    let delLink = document.createElement('a');
+    delLink.href = '';
+    delLink.innerHTML = 'DELETE';
+    li.appendChild(delLink);
+    delLink.addEventListener('click', () => {
+        li.parentElement.removeChild(li);
+        event.preventDefault();
+    })
+}
+
+//Добовляем нового работника
+for (let key of arrKeys) {
+    let input = document.createElement('input');
+    document.body.appendChild(input);
+    input.value = key;
+    input.addEventListener('focus', () => {
+        input.value = '';
+    })
+}
+
+let button = document.createElement('input');
+button.type = 'submit';
+button.value = 'ADDNEWEMPLOYEE'
+document.body.appendChild(button);
+
+button.addEventListener('click', () => {
+    let newEmployeeLi = document.createElement('li');
+    let newEmployeeInputs = document.querySelectorAll('input:not([type="submit"])');
+    for (let i = 0; i < arrKeys.length; i++) { //долго думал как взять данные из коллеции значений инпутов и массива ключей
+        let b = document.createElement('b');
+        let span = document.createElement('span');
+        b.innerHTML = ' ' + arrKeys[i] + ' ';
+        span.innerHTML = newEmployeeInputs[i].value;
+        newEmployeeLi.appendChild(b);
+        newEmployeeLi.appendChild(span);
+        span.addEventListener('click', employeeEdit);
+    }
+    ul.appendChild(newEmployeeLi);
+    addDelLink(newEmployeeLi);
+})

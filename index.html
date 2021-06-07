@@ -21,7 +21,6 @@ let employees = [
 	{name: 'employee3', age: 32, salary: 600},
 ];
 
-//Получаем список ключей объекта
 let allArrKeys = [];
 for (let employee of employees) {
     let keyEmployee = Object.keys(employee);
@@ -29,41 +28,77 @@ for (let employee of employees) {
 }
 let arrKeys = Array.from(new Set(allArrKeys));
 
-//Формируем каркас таблицы с шапкой из ключей объекта
-let table = document.createElement('table');
-document.body.appendChild(table);
-let tr = document.createElement('tr');
-table.appendChild(tr);
+let ul = document.createElement('ul');
+document.body.appendChild(ul);
 
-for (let key of arrKeys) {
-    let td = document.createElement('td');
-    td.innerHTML = key;
-    tr.appendChild(td);
-}
 
-//Тело таблицы
 for (let employee of employees) {
-    let tr = document.createElement('tr');
+    let li = document.createElement('li');
     for (let key of arrKeys) {
-        let td = document.createElement('td');
-        td.innerHTML = employee[key];
-        td.addEventListener('click', tdEdit)
-        tr.appendChild(td);
+        let b = document.createElement('b');
+        let span = document.createElement('span');
+        span.innerHTML = employee[key];
+        b.innerHTML = ' ' + key + ' ';
+        li.appendChild(b);
+        li.appendChild(span);
+        span.addEventListener('click', employeeEdit);
     }
-    table.appendChild(tr);
+    ul.appendChild(li);
+    addDelLink(li);
 }
 
-//Функция редактирование ячейки
-function tdEdit () {
+function employeeEdit () {
     let input = document.createElement('input');
     input.value = this.innerHTML;
     this.innerHTML = '';
     this.appendChild(input);
     input.addEventListener('blur', () => {         
         this.innerHTML = input.value;
-        this.addEventListener('click', tdEdit);
+        this.addEventListener('click', employeeEdit);
     })
-    this.removeEventListener('click', tdEdit);
+    this.removeEventListener('click', employeeEdit);
 }
+
+function addDelLink(li) {
+    let delLink = document.createElement('a');
+    delLink.href = '';
+    delLink.innerHTML = 'DELETE';
+    li.appendChild(delLink);
+    delLink.addEventListener('click', () => {
+        li.parentElement.removeChild(li);
+        event.preventDefault();
+    })
+}
+
+//Добовляем нового работника
+for (let key of arrKeys) {
+    let input = document.createElement('input');
+    document.body.appendChild(input);
+    input.value = key;
+    input.addEventListener('focus', () => {
+        input.value = '';
+    })
+}
+
+let button = document.createElement('input');
+button.type = 'submit';
+button.value = 'ADDNEWEMPLOYEE'
+document.body.appendChild(button);
+
+button.addEventListener('click', () => {
+    let newEmployeeLi = document.createElement('li');
+    let newEmployeeInputs = document.querySelectorAll('input:not([type="submit"])');
+    for (let i = 0; i < arrKeys.length; i++) {
+        let b = document.createElement('b');
+        let span = document.createElement('span');
+        b.innerHTML = ' ' + arrKeys[i] + ' ';
+        span.innerHTML = newEmployeeInputs[i].value;
+        newEmployeeLi.appendChild(b);
+        newEmployeeLi.appendChild(span);
+        span.addEventListener('click', employeeEdit);
+    }
+    ul.appendChild(newEmployeeLi);
+    addDelLink(newEmployeeLi);
+})
 </script>
 </html>
