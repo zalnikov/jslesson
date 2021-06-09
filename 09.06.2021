@@ -1,0 +1,196 @@
+//Задача 249.1
+
+'use strict';
+let tds = document.querySelectorAll('#table td');
+for (let td of tds) {
+    td.addEventListener('click', () => {
+        let cols = document.querySelectorAll('#table td[data-col="' + td.dataset.col +'"]')
+        for (let col of cols) {
+            col.classList.add('bgRed');
+        }
+    })
+}
+
+//Задача 249.2
+
+'use strict';
+let col = 2;
+let row = 3;
+
+let input = document.createElement('input');
+input.type = 'button';
+input.value = 'SETBG'
+document.body.appendChild(input);
+
+input.addEventListener('click', function () {
+    let searchCells = document.querySelectorAll('#table td[data-row = "'+ row +'"]');
+    for (let cell of searchCells) {
+        if (cell.dataset.col == col) {
+            cell.classList.add('bgRed');
+        }
+    }
+})
+
+
+//Задача 250.1
+
+'use strict';
+let tds = document.querySelectorAll('#table td');
+let i = 1;
+for (let td of tds) {
+	td.dataset.col = i;
+	i++;
+	if ( i > 3) {
+		i = 1;
+	}
+}
+
+//Задача 250.2
+
+'use strict';
+let tds = document.querySelectorAll('#table td');
+let i = 1;
+let j = 1;
+for (let td of tds) {
+	td.dataset.col = i;
+	i++;
+	td.dataset.row = j;
+	if (i > 3) {
+		j = j + 1;
+	}
+	if ( i > 3) {
+		i = 1;
+	}
+}
+
+//Задача 250.3
+
+'use strict';
+let tds = document.querySelectorAll('#table td');
+let i = 1;
+let j = 1;
+for (let td of tds) {
+	td.dataset.col = i;
+	i++;
+	td.dataset.row = j;
+	if (i > 3) {
+		j = j + 1;
+	}
+	if (i > 3) {
+		i = 1;
+	}
+	td.addEventListener('click', () => {
+		td.innerHTML = td.dataset.row + ' ' + td.dataset.col;
+	})
+}
+
+//Задача 250.4
+
+'use strict';
+let tds = document.querySelectorAll('#table td');
+let i = 1;
+let j = 1;
+for (let td of tds) {
+	td.dataset.col = i;
+	i++;
+	td.dataset.row = j;
+	if (i > 3) {
+		j = j + 1;
+	}
+	if (i > 3) {
+		i = 1;
+	}
+	td.addEventListener('click', () => {
+		td.innerHTML = td.dataset.row + ' ' + td.dataset.col;
+		if (td.dataset.row == td.dataset.col) {
+			td.classList.add('bgRed')
+		} else {
+			td.classList.add('bgGreen');
+		}
+	})
+}
+
+//Задача 251.1
+
+'use strict';
+let tds = document.querySelectorAll('#table td:nth-child(3)');
+for (let td of tds) {
+	td.classList.add('bgRed');
+}
+
+//Задача 251.2
+
+'use strict';
+let tds = document.querySelectorAll('#table tr:nth-child(1) td:nth-child(3)');
+for (let td of tds) {
+	td.classList.add('bgRed');
+}
+
+//Задача 251.3
+
+'use strict';
+let tds = document.querySelectorAll('#table tr:nth-child(even) td:nth-child(odd)');
+for (let td of tds) {
+	td.classList.add('bgRed');
+}
+
+//Задача 252.1
+
+'use strict';
+function setText(cssSelector, text) {
+	let elem = document.querySelector(cssSelector);
+	elem.innerHTML = text;
+	console.log(elem);
+}
+setText('#elem1', 'hello!');
+
+//Задача 252.2
+
+'use strict';
+function setAttr(cssSelector, attrName, newAttrValue) {
+	let elem = document.querySelector(cssSelector);
+	elem.setAttribute(attrName, newAttrValue);
+
+}
+setAttr('p', 'id', '3');
+
+//Задача 253.1
+
+'use strict';
+function appendText(selector, text) {
+	let elems = document.querySelectorAll(selector);
+	for (let elem of elems) {
+		elem.innerHTML += text;
+	}
+}
+appendText('.elem', 'text');
+
+//Задача 254.1
+
+'use strict';
+function forEach(selector, func) {
+	let elems = document.querySelectorAll(selector);
+	
+	for (let elem of elems) {
+		func(elem);
+	}
+}
+function func(elem) {
+	elem.innerHTML += '!';
+}
+forEach('.elem', func);
+
+//Задача 255.1
+
+'use strict';
+function forEach(selector, func) {
+	let elems = document.querySelectorAll(selector);
+	
+	for (let i = 0; i < elems.length; i++) {
+		func(elems[i], i);
+	}
+}
+function func(elem, index) {
+	elem.innerHTML = index + 1 + ' ' + elem.innerHTML;
+}
+forEach('.elem', func);
