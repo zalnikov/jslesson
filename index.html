@@ -9,26 +9,28 @@
 </head>
 <body>
 
-<p class="elem">1</p>
-<p class="elem">2</p>
-<p class="elem">3</p>
-<p class="elem">4</p>
-<p class="elem">5</p>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+</ul>
 
 </body>
 
 <script>
 'use strict';
-function forEach(selector, func) {
-	let elems = document.querySelectorAll(selector);
-	
-	for (let i = 0; i < elems.length; i++) {
-		func(elems[i], i);
-	}
+let arr = [1, 2 ,3 ,4 ,5];
+let ul = document.querySelector('ul');
+
+for (let elem of arr) {
+    appendElem(ul, elem);
 }
-function func(elem, index) {
-	elem.innerHTML = index + 1 + ' ' + elem.innerHTML;
+
+function appendElem(ul, text) {
+    let li = document.createElement('li');
+    li.innerHTML = text;
+    ul.appendChild(li);
 }
-forEach('.elem', func);
+
 </script>
 </html>

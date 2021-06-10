@@ -1,0 +1,68 @@
+//Задача 256.1
+
+'use strict';
+let elem = document.querySelector('.elem');
+function appendText(elem, text) {
+    elem.innerHTML += text;
+}
+appendText(elem, 'lol');
+
+//Задача 256.2
+
+'use strict';
+let elems = document.querySelectorAll('p');
+for (let elem of elems) {
+    appendText(elem, '!');
+}
+function appendText(elem, text) {
+    elem.innerHTML += text;
+}
+
+//Задача 256.3
+
+'use strict';
+let input = document.querySelector('input');
+setValue(input, 'hello!');
+function setValue(input, textValue) {
+    input.value = textValue;
+}
+
+//Задача 257.1
+
+'use strict';
+let elems = document.querySelectorAll('.elem');
+appendText(elems, 'super');
+function appendText(elems, text) {
+    for (let elem of elems) {
+        elem.innerHTML += text;
+    }
+}
+
+//Задача 257.2
+
+'use strict';
+let ul = document.querySelector('ul');
+
+appendElem(ul, 'hello');
+
+function appendElem(ul, text) {
+    let li = document.createElement('li');
+    li.innerHTML = text;
+    ul.appendChild(li);
+}
+
+//Задача 257.3
+
+'use strict';
+let arr = [1, 2 ,3 ,4 ,5];
+let ul = document.querySelector('ul');
+
+for (let elem of arr) {
+    appendElem(ul, elem);
+}
+
+function appendElem(ul, text) {
+    let li = document.createElement('li');
+    li.innerHTML = text;
+    ul.appendChild(li);
+}
