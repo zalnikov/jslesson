@@ -1,0 +1,189 @@
+//Задача 258.1
+
+let body = document.body;
+createTable(3, 3, body);
+
+function createTable(rows, cols, parent) {
+	let table = document.createElement('table');
+	for (let i = 0; i < rows; i++) {
+        let tr = document.createElement('tr');
+        for (let j = 0; j < cols; j++) {
+            let td = document.createElement('td');
+            tr.appendChild(td);
+        }
+        table.appendChild(tr);
+    }
+    parent.appendChild(table);
+}
+
+//Задача 259.1
+
+function createTable(rows, cols) {
+	let table = document.createElement('table');
+	for (let i = 0; i < rows; i++) {
+        let tr = document.createElement('tr');
+        for (let j = 0; j < cols; j++) {
+            let td = document.createElement('td');
+            tr.appendChild(td);
+        }
+        table.appendChild(tr);
+    }
+    return table;
+}
+
+document.body.appendChild(createTable(3,3));
+
+//Задача 259.2
+
+'use strict'
+let elem = document.querySelector('#elem');
+elem.appendChild(createTable(3, 3));
+
+function createTable(rows, cols) {
+	let table = document.createElement('table');
+	for (let i = 0; i < rows; i++) {
+        let tr = document.createElement('tr');
+        for (let j = 0; j < cols; j++) {
+            let td = document.createElement('td');
+            tr.appendChild(td);
+        }
+        table.appendChild(tr);
+    }
+    return table;
+}
+
+//Задача 260.1
+
+'use strict'
+let div = document.querySelector('#elem');
+
+let arr = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
+let table = createTableByArr(arr);
+
+function createTableByArr(arr) {
+    let table = document.createElement('table');
+    for (let rows of arr) {
+        let tr = document.createElement('tr');
+        for (let cols of rows) {
+            let td = document.createElement('td');
+            td.innerHTML = cols;
+            tr.appendChild(td);
+        }
+        table.appendChild(tr);
+    }
+    return table;
+}
+div.appendChild(table);
+
+//Задача 261.2
+
+'use strict'
+let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+let div = document.querySelector('#elem');
+div.appendChild(createTableByArr(convertArr(arr, 4)));
+
+function convertArr(arr, cols) {
+    let twoDArr = [];
+    let newArr = [];
+    let count = 0;
+    for (let elem of arr) {
+        newArr.push(elem);
+        count++;
+        if (count > cols - 1) {
+            twoDArr.push(newArr);
+            newArr = [];
+            count = 0;
+        }
+    }
+    return twoDArr;
+}
+
+
+function createTableByArr(arr) {
+    let table = document.createElement('table');
+    for (let rows of arr) {
+        let tr = document.createElement('tr');
+        for (let cols of rows) {
+            let td = document.createElement('td');
+            td.innerHTML = cols;
+            tr.appendChild(td);
+        }
+        table.appendChild(tr);
+    }
+    return table;
+}
+
+//Задача 262.1
+//Переписал функцию convertArr т.к. предыдущая версия съедала 
+//не влезающие элементы массива.
+
+let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
+console.log(normolizaArr(convertArr(arr, 5), 5, '-'));
+
+function normolizaArr(arr, num, str) {
+    let normolizaArr = [];
+    for (let elem of arr) {
+        if (elem.length < num) {
+            for (let i = 0, j = num - elem.length; i < j; i++) { // из-за того что elem.length меняется с заполнением вводим переменную j
+                elem.push(str);                                  // которая фиксирует первоначалное значение elem.length
+            }
+        }
+        normolizaArr.push(elem);
+    }
+    return normolizaArr;
+}
+
+function convertArr(arr, cols) {
+    let newArr = [];
+    for (let i = 0, j = arr.length; i < j; i = i + cols) {
+        newArr.push(arr.slice(i, i+cols));
+    };
+    return newArr;
+}
+
+//Задача 262.2
+
+'use strict'
+let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+let div = document.querySelector('#elem');
+
+div.appendChild(createTableByArr(normolizaArr(convertArr(arr, 5), 5, '-')));
+
+function normolizaArr(arr, num, str) {
+    let normolizaArr = [];
+    for (let elem of arr) {
+        if (elem.length < num) {
+            for (let i = 0, j = num - elem.length; i < j; i++) {
+                elem.push(str);
+            }
+        }
+        normolizaArr.push(elem);
+    }
+    return normolizaArr;
+}
+
+function convertArr(arr, cols) {
+    let i;
+    let j;
+    let newArr = [];
+    for (let i = 0, j = arr.length; i < j; i = i + cols) {
+        newArr.push(arr.slice(i, i+cols));
+    };
+    return newArr;
+}
+
+
+function createTableByArr(arr) {
+    let table = document.createElement('table');
+    for (let rows of arr) {
+        let tr = document.createElement('tr');
+        for (let cols of rows) {
+            let td = document.createElement('td');
+            td.innerHTML = cols;
+            tr.appendChild(td);
+        }
+        table.appendChild(tr);
+    }
+    return table;
+}

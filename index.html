@@ -9,28 +9,53 @@
 </head>
 <body>
 
-<ul>
-    <li>1</li>
-    <li>2</li>
-    <li>3</li>
-</ul>
+<div id="elem"></div>
 
 </body>
 
 <script>
-'use strict';
-let arr = [1, 2 ,3 ,4 ,5];
-let ul = document.querySelector('ul');
+'use strict'
+let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+let div = document.querySelector('#elem');
 
-for (let elem of arr) {
-    appendElem(ul, elem);
+div.appendChild(createTableByArr(normolizaArr(convertArr(arr, 5), 5, '-')));
+console.log(normolizaArr(convertArr(arr, 5), 5, '-'));
+function normolizaArr(arr, num, str) {
+    let normolizaArr = [];
+    for (let elem of arr) {
+        if (elem.length < num) {
+            for (let i = 0, j = num - elem.length; i < j; i++) {
+                elem.push(str);
+            }
+        }
+        normolizaArr.push(elem);
+    }
+    return normolizaArr;
 }
 
-function appendElem(ul, text) {
-    let li = document.createElement('li');
-    li.innerHTML = text;
-    ul.appendChild(li);
+function convertArr(arr, cols) {
+    let i;
+    let j;
+    let newArr = [];
+    for (let i = 0, j = arr.length; i < j; i = i + cols) {
+        newArr.push(arr.slice(i, i+cols));
+    };
+    return newArr;
 }
 
+
+function createTableByArr(arr) {
+    let table = document.createElement('table');
+    for (let rows of arr) {
+        let tr = document.createElement('tr');
+        for (let cols of rows) {
+            let td = document.createElement('td');
+            td.innerHTML = cols;
+            tr.appendChild(td);
+        }
+        table.appendChild(tr);
+    }
+    return table;
+}
 </script>
 </html>
